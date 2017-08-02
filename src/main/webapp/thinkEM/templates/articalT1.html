@@ -1,0 +1,16 @@
+<!-- 文章详细 -->
+					<div class="ui_content_detail ui_news_detail">
+						<h4 class="text-center ">{{detaildata.titile}}</h4>
+						<hr>
+						<h6 class="text-center">时间：{{detaildata.publishTime}} 编辑：{{detaildata.author}} <!-- 浏览：XXX --></h6>
+						 
+						<div ng-bind-html="detaildata.content|htmlContent"></div>
+						<div class="clearfix"></div>
+						<ul class="list-unstyled ui_news_up_down ">
+							<li ng-show="detaildata.link">来源：{{detaildata.link}}</li>
+							<li ng-show="detaildata.annex">附件<a href="{{detaildata.annex}}">{{detaildata.annex}}</a></li>
+						</ul>
+					
+						<div class="clearfix"></div>
+
+					</div>

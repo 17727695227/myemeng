@@ -1,0 +1,15 @@
+<div  class="ui_content ui_content_spread ">
+	<div class="ui_content_nav">
+		<span  class="ui_content_title">{{passageTypeName[Map[$stateParams.passageType]]}}</span>	
+	</div>
+	<!-- 书本列表 -->
+	<div class="ui_catalogue_list">
+		<ul>
+			<li><a ui-sref='.articleid({articleid:1})'><span>&nbsp;{{1}}.</span>我省在第六届全国高校辅导员我省在第六届全国高校辅导员职业能力我 </a></li>
+		</ul>
+	</div>
+	<div class="clearfix"></div>
+	<div ng-show="pagingOptions.totalPage>1" class="tcdPageCode" pageset='getPassageListData()'>
+ 	</div>
+</div> 
+

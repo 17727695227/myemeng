@@ -1,0 +1,5 @@
+	<!-- 文章列表 -->
+	<ul class="ui_news_list">
+		<li  ng-repeat="x in page.data[page.currentindex]"><a ui-sref=".relatedid({relatedid:x.id})"><span class="type"></span><span class="text">{{x.titile}}</span><span class="date">{{x.publish_time}}</span></a></li>
+	</ul>
+	<div ng-show="pagingOptions.totalPage>1"  class="tcdPageCode"  pageset='getTeacherRelated()'>

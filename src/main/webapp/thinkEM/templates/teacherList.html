@@ -1,0 +1,13 @@
+<div class="ui_content_list" >
+	<a  ng-repeat="x in page.data[page.currentindex]" ui-sref=".articleid({articleid:x.id})" class="ui_teacher_list_i">
+		<img ng-src="{{x.pic}}">
+		<div >
+			<span>{{x.name}}</span>
+			<p class="dotdotdot" ng-bind="x.introduction" dot>{{x.introduction}}</p>
+		</div>
+	</a>
+	<div class="clearfix"></div>
+	<div ng-show="pagingOptions.totalPage>1" class="tcdPageCode" pageset='getTeacherData()'>
+ 	</div>
+</div>
+

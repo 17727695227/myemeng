@@ -1,0 +1,5 @@
+<ul class="list-unstyled ui_tolk_list" ng-init="licount=0">
+	<li><a ui-sref=".articleid({articleid:1})"><span class="type">{{($index+1)}}</span><span class="text">我省在第六届全国高校辅导员职业能力</span><span class="date">2017-12-19</span><span class="auth"> <span class="glyphicon glyphicon-user"></span>老茶客</span></a></li>
+	<li ng-repeat="x in page.data[page.currentindex]"><a ui-sref=".articleid({articleid:x.id})"><span class="type">{{($index+1)}}</span><span class="text">{{x.title}}</span><span class="date">2017-12-19</span><span class="auth"> <span class="glyphicon glyphicon-user"></span>{{x.username}}</span></a></li>
+</ul>
+

@@ -1,0 +1,147 @@
+
+    <form class="form-inline editFormhead">
+      <div class="form-group">
+        <label for="headline"><button type="submit" class="btn btn-default btn2">标题</button></label>
+        <input type="text" class="form-control" id="headline" placeholder="请输入标题">
+      </div>
+    </form>
+    <div id="editor">  
+    	<div id="img">
+    		
+    	</div>
+    </div>
+    <button class="btn btn-danger" id="btn1">提交</button>
+
+    <div id="showHeadline"></div>
+    <div id="show1">
+
+    </div>
+<style type="text/css">
+    .editFormhead{
+        margin-left: 40px;
+    }
+
+    .editFormhead .form-group{
+        margin-top: 10px;
+    }
+
+    #editor{
+        margin: 0 40px;
+    }
+
+	#btn1{
+		margin:10px 40px;
+	}
+
+	#headline{
+		width: 400px;
+	}
+
+</style>
+<script src="wangEditor-3.0.1/release/wangEditor.min.js"></script>
+<script type="text/javascript">
+
+        var E = window.wangEditor;
+        var editor = new E('#editor');
+        editor.customConfig.menus = [
+    'head',  // 标题
+    'bold',  // 粗体
+    'italic',  // 斜体
+    'underline',  // 下划线
+    'strikeThrough',  // 删除线
+    'foreColor',  // 文字颜色
+    'backColor',  // 背景颜色
+    // 'link',  // 插入链接
+    'list',  // 列表
+    'justify',  // 对齐方式
+    'quote',  // 引用
+    'emoticon',  // 表情
+    'image',  // 插入图片
+    'table',  // 表格
+    'video',  // 插入视频
+    'code',  // 插入代码
+    'undo',  // 撤销
+    'redo'  // 重复
+    ];
+        // editor.customConfig.withCredentials = true//withCredentials（跨域传递 cookie）
+        // editor.customConfig.uploadImgServer = '/upload'  // 上传图片到服务器
+        editor.customConfig.uploadImgShowBase64  = true;//base64格式保持图片
+
+        editor.create();
+
+editor.customConfig.uploadImgHooks = {
+    before: function (xhr, editor, files) {
+        // 图片上传之前触发
+        // xhr 是 XMLHttpRequst 对象，editor 是编辑器对象，files 是选择的图片文件
+    },
+    success: function (xhr, editor, result) {
+        // 图片上传并返回结果，图片插入成功之后触发
+        // xhr 是 XMLHttpRequst 对象，editor 是编辑器对象，result 是服务器端返回的结果
+        alert("success");
+    },
+    fail: function (xhr, editor, result) {
+        // 图片上传并返回结果，但图片插入错误时触发
+        // xhr 是 XMLHttpRequst 对象，editor 是编辑器对象，result 是服务器端返回的结果
+    },
+    error: function (xhr, editor) {
+        // 图片上传出错时触发
+        // xhr 是 XMLHttpRequst 对象，editor 是编辑器对象
+    },
+    timeout: function (xhr, editor) {
+        // 图片上传超时时触发
+        // xhr 是 XMLHttpRequst 对象，editor 是编辑器对象
+    },
+
+    // 如果服务器端返回的不是 {errno:0, data: [...]} 这种格式，可使用该配置
+    customInsert: function (insertImg, result, editor) {
+        // 图片上传并返回结果，自定义插入图片的事件（而不是编辑器自动插入图片！！！）
+        // insertImg 是插入图片的函数，editor 是编辑器对象，result 是服务器端返回的结果
+
+        // 举例：假如上传图片成功后，服务器端返回的是 {url:'....'} 这种格式，即可这样插入图片：
+
+        //模拟返回的数据
+        var result = {
+                // errno 即错误代码，0 表示没有错误。
+                //       如果有错误，errno != 0，可通过下文中的监听函数 fail 拿到该错误码进行自定义处理
+                errno: 0,
+                // data 是一个数组，返回若干图片的线上地址
+                url: [
+                    'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1497287485469&di=310861321142c93e83bfa33aaf978bf5&imgtype=0&src=http%3A%2F%2Fimg4.duitang.com%2Fuploads%2Fitem%2F201405%2F20%2F20140520005058_3sfyi.thumb.600_0.jpeg',
+                    'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1497287485468&di=e5035aceeaaee759206edb33ee9c59cf&imgtype=0&src=http%3A%2F%2Fcdn.duitang.com%2Fuploads%2Fitem%2F201111%2F26%2F20111126182340_JzF3u.thumb.700_0.jpg',
+                    'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1497287485468&di=55634d9cc2be4e4b08edc304d2c10bdc&imgtype=0&src=http%3A%2F%2Fimg5.duitang.com%2Fuploads%2Fitem%2F201602%2F15%2F20160215200700_KkZmB.thumb.700_0.jpeg',
+                    'http://fanyi.baidu.com/static/translation/img/header/logo_cbfea26.png'
+                ]
+            };
+
+        var url = result.url;
+        function insertImg(str){
+        	var l = str.length;
+        	for(var i = 0;i<l;i++){
+        		var commonImg = document.createElement("img");
+        		var myId = document.getElementById("img");
+        		commonImg.src = str[i];
+        		myId.appendChild(commonImg);
+        	}
+        }
+        insertImg(url);
+    }
+};
+editor.customConfig.uploadImgHooks.customInsert();
+
+//点击提交之后的显示
+function show(){
+	var headline = document.getElementById('headline');
+	headline = '<h1>'+headline.value+ '</h1>';
+	// alert(headline);
+	var editorContainer = editor.txt.html();
+	var showHeadline = document.getElementById('showHeadline');
+	var showId = document.getElementById('show1');
+
+	showHeadline.innerHTML = headline;//标题
+	showId.innerHTML = editorContainer;//编辑器
+    //作者，时间，标题，编辑器内容
+}
+
+document.getElementById('btn1').addEventListener('click',show);
+</script>
+

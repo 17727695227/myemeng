@@ -1,0 +1,6 @@
+<ul class="list-unstyled ui_tolk_list" >
+	<li ng-repeat="x in page.data[page.currentindex]"><a ui-sref=".articleid({articleid:x.id})"><span class="type">{{($index+1)}}</span><span class="text">{{x.titile}}</span><span class="date">{{x.releaseTime|reverse2}}</span><span class="auth"> <span class="glyphicon glyphicon-user"></span>{{x.username}}</span></a></li>
+</ul>
+
+<div class="clearfix"></div>
+	
